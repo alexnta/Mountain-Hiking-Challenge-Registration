@@ -4,7 +4,7 @@
  */
 package view;
 
-import controller.StudentController;
+import model.Student;
 import tools.Inputter;
 
 /**
@@ -13,55 +13,29 @@ import tools.Inputter;
  */
 public class Menu {
 
-    private StudentController controller;
     private final Inputter inp;
 
-    public Menu(StudentController controller) {
-        this.controller = controller;
+    public Menu() {
         this.inp = new Inputter();
     }
 
-    public void start() {
-        int choice;
-
-        do {
-            printMenu();
-            choice = inp.getInt("Chose an option (1 - 9): ");
-
-            switch (choice) {
-                case 1:
-                    // todo 
-                    break;
-                case 2:
-                    // todo 
-                    break;
-                case 3:
-                    // todo 
-                    break;
-                case 4:
-                    // todo 
-                    break;
-                case 5:
-                    // todo 
-                    break;
-                case 6:
-                    // todo 
-                    break;
-                case 7:
-                    // todo 
-                    break;
-                case 8:
-                    // todo 
-                    break;
-                case 9:
-                    // todo 
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        } while (choice != 9);
+    public int showMenuAndGetChoice() {
+        printMenu();
+        return inp.getInt("Chose an option (1 - 9): ");
     }
 
+    
+    public void showStudentDetails(Student stu) {
+        System.out.println("Student Details:");
+        System.out.println("-----------------------------------------------------");
+        System.out.printf("Student ID : %s\n", stu.getId());
+        System.out.printf("Name       : %s\n", stu.getName());
+        System.out.printf("Phone      : %s\n", stu.getPhone());
+        System.out.printf("Mountain   : %s\n", stu.getMountainCode());
+        System.out.printf("Fee        : %,.0f\n", stu.getTuitionFee());
+        System.out.println("-----------------------------------------------------");
+    }
+    
     private void printMenu() {
         System.out.println("========= Student Registration Menu =========");
         System.out.println("1. New Registration");

@@ -8,51 +8,68 @@ import model.StatisticalInfo;
 import model.Student;
 import java.util.HashMap;
 import java.util.List;
+import model.Mountain;
 
 /**
  *
  * @author lenovo
  */
+public class Statistics extends HashMap<String, StatisticalInfo> {
 
-public class Statistics extends HashMap<String, StatisticalInfo>{
+    private final String HEADER_TABLE
+            = "+----------------------------------------------------------------------+\n"
+            + "|      Peak Name     |    Number of Participants    |    Total Cost    |\n"
+            + "|----------------------------------------------------------------------|";
 
-    private final String HEADER_TABLE =
-            "+-------------------------------------------------------------------+\n"+
-            "|    Peak Name    |    Number of Participants    |    Total Cost    |\n" +
-            "|-------------------------------------------------------------------|";
-
-    private final String FOOTER_TABLE =
-            "+-------------------------------------------------------------------+";
+    private final String FOOTER_TABLE
+            = "+----------------------------------------------------------------------+";
 
     public Statistics() {
         super();
     }
 
-//    public Statistics (List<Student> list) {
-//        super();
-//        statisticalize(list);
-//    }
-////
-////    /* Phuong thuc thuc hien thong ke du lieu dua tren danh sach */
-////    public final void statisticalize (List<Student> list) {
-//        for (Student i : list) {
-//            if (this.containsKey(i.getMountainCode())){
-//                StatisticalInfo x = this.get(i.getMountainCode());
-//                x.setNumOfRegistration(x.getNumOfRegistration() + 1);
-//                x.setTotalCost(x.getTotalCost() + i.getTutionFee());
-//            }else{
-//                StatisticalInfo y = new StatisticalInfo(i.getMountainCode(), 1, i.getTutionFee());
+    public Statistics(List<Student> list) {
+        super();
+        statisticalize(list);
+    }
 //
-//                this.put(i.getMountainCode(), y);
-//            }
-//        }
-//    }
+//    /* Phuong thuc thuc hien thong ke du lieu dua tren danh sach */
 
-    
-    public void show(){
+    public final void statisticalize(List<Student> list) {
+        this.clear();
+
+        if (list == null || list.isEmpty()) {
+            return;
+        }
+
+        for (Student s : list) {
+            if (s == null) {
+                continue;
+            }
+            String code = s.getMountainCode();
+            if (code == null) {
+                continue;
+            }
+
+            if (this.containsKey(code)) {
+                StatisticalInfo info = this.get(code);
+                info.setNumOfStudent(info.getNumOfStudent() + 1);
+                info.setTotalCost(info.getTotalCost() + s.getTuitionFee());
+            } else {
+                StatisticalInfo info = new StatisticalInfo(code, 1, s.getTuitionFee());
+                this.put(code, info);
+            }
+        }
+    }
+
+    public void show() {
         System.out.println(HEADER_TABLE);
-        for (StatisticalInfo i : this.values())
-            System.out.println(i);
+        for (StatisticalInfo info : this.values()) {
+            System.out.printf("| %-18s | %28d | %,16.0f |\n",
+                    info.getMountainCode(),
+                    info.getNumOfStudent(),
+                    info.getTotalCost());
+        }
         System.out.println(FOOTER_TABLE);
     }
 }

@@ -9,8 +9,9 @@ package model;
  * @author lenovo
  */
 public class StatisticalInfo {
+
     private String mountainCode;
-    private int numOfStudent;   
+    private int numOfStudent;
     private double totalCost;
 
     public StatisticalInfo() {
