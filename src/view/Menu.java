@@ -13,30 +13,12 @@ import tools.Inputter;
  */
 public class Menu {
 
-    private final Inputter inp;
-
-    public Menu() {
-        this.inp = new Inputter();
-    }
-
     public int showMenuAndGetChoice() {
-        printMenu();
-        return inp.getInt("Chose an option (1 - 9): ");
-    }
-
-    
-    public void showStudentDetails(Student stu) {
-        System.out.println("Student Details:");
-        System.out.println("-----------------------------------------------------");
-        System.out.printf("Student ID : %s\n", stu.getId());
-        System.out.printf("Name       : %s\n", stu.getName());
-        System.out.printf("Phone      : %s\n", stu.getPhone());
-        System.out.printf("Mountain   : %s\n", stu.getMountainCode());
-        System.out.printf("Fee        : %,.0f\n", stu.getTuitionFee());
-        System.out.println("-----------------------------------------------------");
+        showMenu();
+        return Inputter.getInt("Chose an option (1 - 9): ");
     }
     
-    private void printMenu() {
+    private void showMenu() {
         System.out.println("========= Student Registration Menu =========");
         System.out.println("1. New Registration");
         System.out.println("2. Update Registration Information");

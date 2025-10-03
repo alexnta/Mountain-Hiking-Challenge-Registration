@@ -4,10 +4,9 @@
  */
 package tools;
 
-import business.Mountains;
-import business.Students;
+import controller.Mountains;
+import controller.Students;
 import java.util.Scanner;
-import java.util.function.Predicate;
 import model.Student;
 
 /**
@@ -46,7 +45,7 @@ public class Inputter {
     public static String inputAndLoop(String mess, String pattern) {
         return inputAndLoop(mess, pattern, "Invalid input! Please try again.");
     }
-    
+
     public static String inputAndLoop(String mess, String pattern, String failMsg) {
         String result = "";
         boolean more = true;
@@ -103,7 +102,7 @@ public class Inputter {
     private static String inputMountainCode(Mountains mountains) {
         String mountainCode;
         do {
-            mountainCode = inputAndLoop("Enter Mountain Code: ", Acceptable.PEAK_CODE_VALID);
+            mountainCode = getString("Enter Mountain Code: ");
             if (!mountains.isValidMountainCode(mountainCode)) {
                 System.out.println("Mountain code does not exist. Please try again.");
                 mountainCode = "";

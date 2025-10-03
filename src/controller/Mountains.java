@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package business;
+package controller;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,15 +20,15 @@ import model.Mountain;
  */
 public class Mountains {
 
-    public List<Mountain> list = new ArrayList<>();
-    private final String filePath;
+    private List<Mountain> list = new ArrayList<>();
+    private final String pathFile;
 
     public Mountains() {
         this("data/MountainList.csv");
     }
 
-    public Mountains(String filePath) {
-        this.filePath = filePath;
+    public Mountains(String pathFile) {
+        this.pathFile = pathFile;
         readFromFile();
     }
 
@@ -76,13 +76,13 @@ public class Mountains {
 
     public void readFromFile() {
 
-        File f = new File(this.filePath);
+        File f = new File(this.pathFile);
         if (!f.exists()) {
-            System.err.println("File not found: " + filePath);
+            System.err.println("File not found: " + pathFile);
             return;
         }
 
-        try ( BufferedReader br = new BufferedReader(new FileReader(f))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(f))) {
             // skip first line
             br.readLine();
 

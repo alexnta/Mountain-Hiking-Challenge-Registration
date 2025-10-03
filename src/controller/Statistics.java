@@ -2,16 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package business;
+package controller;
 
 import model.StatisticalInfo;
 import model.Student;
 import java.util.HashMap;
 import java.util.List;
-import model.Mountain;
 
 /**
- *
+ *3
  * @author lenovo
  */
 public class Statistics extends HashMap<String, StatisticalInfo> {
@@ -32,8 +31,6 @@ public class Statistics extends HashMap<String, StatisticalInfo> {
         super();
         statisticalize(list);
     }
-//
-//    /* Phuong thuc thuc hien thong ke du lieu dua tren danh sach */
 
     public final void statisticalize(List<Student> list) {
         this.clear();
@@ -66,7 +63,7 @@ public class Statistics extends HashMap<String, StatisticalInfo> {
         System.out.println(HEADER_TABLE);
         for (StatisticalInfo info : this.values()) {
             System.out.printf("| %-18s | %28d | %,16.0f |\n",
-                    info.getMountainCode(),
+                    "MT" + info.getMountainCode(),
                     info.getNumOfStudent(),
                     info.getTotalCost());
         }
